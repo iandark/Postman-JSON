@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "a6be54c3-14eb-4f50-b975-fa13550d386b",
+		"name": "GoFinances",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "backend",
+			"item": [
+				{
+					"name": "Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "f6c309cc-bb20-4cb7-930a-3ab7352d566a",
+								"exec": [
+									"a = ['income', 'outcome']",
+									"numberRandom = Math.floor(Math.random() * 100000);  ",
+									"pm.globals.set(\"randomType\", a[numberRandom%2]);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"{{$randomProductName}}\",\n    \"value\": \"{{$randomPrice}}\",\n    \"type\": \"{{randomType}}\",\n    \"category\": \"{{$randomProduct}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/transactions",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/transactions",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/transactions/fe763e63-2642-4721-9ec8-6a74aa715f9f",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"transactions",
+								"fe763e63-2642-4721-9ec8-6a74aa715f9f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/transactions/import",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"transactions",
+								"import"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
